@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drunken Chicken - Orders</title>
+  <link rel="stylesheet" href="css/orders.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-content">
+      <h1 class="logo">
+        <img src="img/logo.jpg" alt="Drunken Chicken Logo" class="logo-img">
+        Drunken Chicken
+      </h1>
+
+      <nav class="nav">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="orders.html">Orders</a></li>
+        </ul>
+
+        <!-- Search bar -->
+        <input type="text" id="search-bar" placeholder="Search products..." />
+
+        <!-- Cart icon -->
+        <div id="cart-icon" class="cart-icon">
+            <a href="cart.html" title="View Cart">🛒 <span id="cart-count">0</span></a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ORDERS SECTION -->
+  <section class="orders-section">
+    <div class="container">
+      <h2>Your Orders</h2>
+
+      <!-- Orders list -->
+      <ul id="orders-list"></ul>
+
+      <!-- Total for all orders -->
+      <p class="orders-total">Total: <span id="orders-total">₱0.00</span></p>
+
+      <!-- Clear orders button -->
+      <button id="clear-orders-btn" class="btn-clear-orders">Clear All Orders</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Drunken Chicken. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/orders.js"></script>
+</body>
+</html>
