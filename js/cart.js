@@ -9,6 +9,16 @@ let orders = JSON.parse(localStorage.getItem('orders')) || [];
 // ============================
 // UPDATE CART DISPLAY
 // ============================
+
+ const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
+
 function updateCartDisplay() {
     // Update cart icon count
     const cartCount = document.getElementById('cart-count');

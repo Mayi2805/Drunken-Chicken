@@ -2,6 +2,7 @@
 // Load orders from localStorage
 // ============================
 let orders = JSON.parse(localStorage.getItem('orders')) || [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // ============================
 // Update orders count in nav
@@ -26,16 +27,16 @@ function renderOrders() {
         return;
     }
 
-    // List items with remove button
     ordersList.innerHTML = orders.map((item, index) => `
         <li>
-            <span class="order-name">${item.name}</span>
-            <span class="order-price">₱${item.price.toFixed(2)}</span>
+            <div class="order-info">
+                <span class="order-name">${item.name}</span>
+                <span class="order-price">₱${item.price.toFixed(2)}</span>
+            </div>
             <button onclick="removeOrder(${index})" class="btn-remove">Remove</button>
         </li>
     `).join('');
 
-    // Total
     const total = orders.reduce((sum, item) => sum + item.price, 0);
     ordersTotalEl.textContent = `₱${total.toFixed(2)}`;
 }
@@ -65,7 +66,7 @@ if (clearOrdersBtn) {
             updateOrderCount();
             showNotification("All orders cleared!", "error");
         }
-    }
+    };
 }
 
 // ============================
@@ -94,31 +95,39 @@ function showNotification(message, type) {
     }, 2000);
 }
 
+// ============================
 // Checkout button
+// ============================
 const checkoutBtn = document.getElementById('checkout-btn');
 if (checkoutBtn) {
     checkoutBtn.onclick = () => {
         if (cart.length === 0) return showNotification("Your cart is empty!", "error");
 
-        // Load existing orders
-        let orders = JSON.parse(localStorage.getItem('orders')) || [];
-
-        // Add current cart items to orders
         orders = orders.concat(cart);
-
-        // Save updated orders to localStorage
         localStorage.setItem('orders', JSON.stringify(orders));
 
-        // Clear cart
         cart = [];
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartDisplay();
 
-        // Show notification
         showNotification("Checkout successful! Your orders have been saved.", "success");
+        updateOrderCount();
+        renderOrders();
     };
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // (your product rendering code continues here...)
+});
 
 // ============================
 // Initialize

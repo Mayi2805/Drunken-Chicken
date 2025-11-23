@@ -78,9 +78,15 @@ function showNotification(message, type) {
     }, 2000);
 }
 
-
 // Render products on main page
 document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});
+
     const container = document.getElementById('product-container');
 
     // Group products by category
